@@ -1,0 +1,21 @@
+<div class="image-preview" *ngIf="getImageData()">
+  <img
+    [src]="getImageData()"
+    alt="Uploaded Photo"
+    height="100px"
+    width="100px"
+    required
+  />
+</div>
+<div class="image-preview" *ngIf="!getImageData()">
+  <img [src]="url" alt="Default Image" height="100px" width="100px" />
+</div>
+<input
+  type="file"
+  id="img"
+  style="display: none"
+  accept="image/*"
+  (change)="onFileSelected($event)"
+  required
+/>
+<label for="img">Upload your photo</label>

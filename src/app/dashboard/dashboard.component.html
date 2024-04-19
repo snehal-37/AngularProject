@@ -1,0 +1,58 @@
+<div class="bg">
+  <app-root />
+  <div class="input-with-button">
+    <h1 class="heading">I'm looking for..</h1>
+    <input
+      type="text"
+      [(ngModel)]="inputValue"
+      placeholder="Enter a Job Description..."
+    />
+    <button class="search ms-5">Search</button>
+    <div>
+      <mat-checkbox class="checkbox" [(ngModel)]="checked"
+        >Full Time</mat-checkbox
+      >
+      <mat-checkbox class="checkbox ms-3" [(ngModel)]="indeterminate"
+        >Part Time/Casual/Freelance</mat-checkbox
+      >
+      <select id="myDropdown">
+        <option value="option1">Select your location</option>
+        <option value="option2">Mumbai</option>
+        <option value="option3">Pune</option>
+        <option value="option3">Banglore</option>
+      </select>
+    </div>
+    <button class="register" (click)="openDialog()">Register</button>
+  </div>
+  <section class="hero">
+    <div>
+      <h3 class="p1">We're leaders in</h3>
+      <h1 class="h1 mt-1">Creative Digital Recruitment</h1>
+      <button class="line"></button>
+    </div>
+    <p class="p2">
+      Based in Surry Hills,the creative hub of Sydney we are surrounded by
+      creativity <br />and that reflects on the type of jobs we recruit for.
+    </p>
+    <button class="find">FIND OUT MORE ABOUT US!</button>
+  </section>
+  <section class="footer">
+    <div>
+      <p class="p3">Subscribe to our Job Seeker Mailing List</p>
+
+      <input
+        class="email"
+        type="text"
+        [(ngModel)]="inputEmail"
+        placeholder="Enter Your Email Address"
+      />
+    </div>
+  </section>
+  <section class="footer2">
+    <div>
+      <mat-icon matPrefix>email</mat-icon>
+      <span class="text">email address</span>
+      <p>Copyright &copy; 2014 Demo App Counsulting.<b>Terms & Policies.</b></p>
+    </div>
+  </section>
+</div>

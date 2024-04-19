@@ -1,0 +1,18 @@
+{
+  "user": [
+    {
+      "id": "f2eb",
+      "firstname": "Radha",
+      "lastname": "kadam",
+      "email": "abc@gmail.com",
+      "mobileNumber": "8902328929",
+      "age": 25,
+      "state": "gujarat",
+      "country": "india",
+      "address": "home",
+      "tag": "Badminton",
+      "check": true,
+      "timestamp": "2024-04-19T17:35:11.310Z"
+    }
+  ]
+}

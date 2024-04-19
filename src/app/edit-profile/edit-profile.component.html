@@ -1,0 +1,65 @@
+<div class="heading">
+  <app-root />
+</div>
+<h1 class="p1">Profile</h1>
+
+<div class="container">
+  <div class="row" *ngIf="userDetails">
+    <div class="col">
+      <div class="image mt-2">
+        <div class="image-preview" *ngIf="getImageData()">
+          <img
+            [src]="getImageData()"
+            alt="Uploaded Photo"
+            height="200px"
+            width="200px"
+          />
+        </div>
+        <div class="image-preview" *ngIf="!getImageData()">
+          <img [src]="url" alt="Default Image" height="200px" width="200px" />
+        </div>
+        <input
+          type="file"
+          id="img"
+          style="display: none"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          required
+        />
+        <br />
+        <label class="photo mt-2" for="img">Edit Photo</label>
+        <button class="profile ms-2 mt-2" (click)="openDialog()">
+          Edit Profile
+        </button>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <p class="para">
+          I'm {{ userDetails.firstname }} {{ userDetails.lastname }} and I'm
+          {{ userDetails.age }} years and <br />
+          you can send yours emails to <br />
+          {{ userDetails.email }} I live in {{ userDetails.state }} in <br />
+          {{ userDetails.country }}. I like to play Chess,
+          {{ userDetails.tag }}.
+          <br />
+          And please send me newsletters. <br />
+          Please reach out to me on my phone number.
+        </p>
+        <button class="btn">I Agree</button>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="footer">
+  <div>
+    <p class="p3">Subscribe to our Job Seeker Mailing List</p>
+
+    <input
+      class="email"
+      type="text"
+      [(ngModel)]="inputEmail"
+      placeholder="Enter Your Email Address"
+    />
+  </div>
+</section>

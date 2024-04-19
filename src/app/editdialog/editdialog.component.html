@@ -1,0 +1,286 @@
+<div class="heading">
+  <span class="name">Edit Profile</span>
+  <button mat-icon-button class="btn" (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<form #regForm="ngForm" (ngSubmit)="submitForm(regForm)">
+  <tr>
+    <td>
+      <div class="box"></div>
+    </td>
+    <td>
+      <input
+        class="f1"
+        type="text"
+        [(ngModel)]="firstname"
+        name="firstName"
+        placeholder="First name"
+        required
+        maxlength="20"
+        pattern="[a-zA-Z ]*"
+        #firstnameInput="ngModel"
+      />
+      <input
+        class="f1"
+        type="text"
+        [(ngModel)]="lastname"
+        name="lastName"
+        placeholder="Last name"
+        required
+        maxlength="20"
+        pattern="[a-zA-Z ]*"
+        #lastnameInput="ngModel"
+      />
+
+      <div>
+        <div
+          *ngIf="
+            firstnameInput.invalid &&
+            (firstnameInput.dirty || firstnameInput.touched)
+          "
+        >
+          <div class="warning" *ngIf="firstnameInput.errors?.['required']">
+            Name is required
+          </div>
+          <div class="warning" *ngIf="firstnameInput.errors?.['pattern']">
+            Only characters and spaces are allowed
+          </div>
+          <div class="warning" *ngIf="firstnameInput.errors?.['maxlength']">
+            Maximum 20 characters allowed
+          </div>
+        </div>
+        <div
+          *ngIf="
+            lastnameInput.invalid &&
+            (lastnameInput.dirty || lastnameInput.touched)
+          "
+        >
+          <div class="warning" *ngIf="lastnameInput.errors?.['required']">
+            Last name is required
+          </div>
+          <div class="warning" *ngIf="lastnameInput.errors?.['pattern']">
+            Only characters and spaces are allowed
+          </div>
+        </div>
+        <input
+          class="f2"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Email"
+          required
+          maxlength="50"
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          #emailInput="ngModel"
+        />
+
+        <div
+          *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)"
+        >
+          <div class="warning" *ngIf="emailInput.errors?.['required']">
+            Email is required
+          </div>
+          <div class="warning" *ngIf="emailInput.errors?.['pattern']">
+            Please enter a valid email address
+          </div>
+        </div>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>
+      <input
+        class="f3"
+        type="tel"
+        [(ngModel)]="mobileNumber"
+        name="mobileNumber"
+        placeholder="Mobile Number"
+        required
+        maxlength="10"
+        pattern="[0-9]{10,15}"
+        #mobileNumberInput="ngModel"
+      />
+      <div
+        *ngIf="
+          mobileNumberInput.invalid &&
+          (mobileNumberInput.dirty || mobileNumberInput.touched)
+        "
+      >
+        <div class="warning" *ngIf="mobileNumberInput.errors?.['required']">
+          Mobile number is required
+        </div>
+        <div class="warning" *ngIf="mobileNumberInput.errors?.['pattern']">
+          Please enter a valid mobile number
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <span class="slider me-3">Age</span>
+      <mat-slider
+        thumbLabel
+        tickInterval="10"
+        [min]="20"
+        [max]="60"
+        [step]="1"
+        (input)="updateAge($event)"
+        ><input matSliderThumb [(ngModel)]="value" #slider
+      /></mat-slider>
+      <span [(ngModel)]="age" name="age">Age: {{ slider.value }}</span>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <mat-form-field>
+        <mat-label>State</mat-label>
+        <mat-select [(ngModel)]="state" name="state" required>
+          <mat-option value="andhrapradesh">Andhra Pradesh</mat-option>
+          <mat-option value="gujarat">Gujarat</mat-option>
+          <mat-option value="karnataka">Karnataka</mat-option>
+          <mat-option value="maharashta">Maharashtra</mat-option>
+          <mat-option value="punjab">Punjab</mat-option>
+          <mat-option value="rajasthan">Rajasthan</mat-option>
+          <mat-option value="tamilnadu">Tamil Nadu</mat-option>
+          <mat-option value="telangana">Telangana</mat-option>
+          <mat-option value="uttarpradesh">Uttar Pradesh</mat-option>
+          <mat-option value="westbengal">West Bengal</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!state">State is required</mat-error>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <mat-form-field>
+        <mat-label>Country</mat-label>
+        <mat-select [(ngModel)]="country" name="country" required>
+          <mat-option value="india">India</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!state">Country is required</mat-error>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <mat-select
+          name="addressType"
+          [(ngModel)]="selectedAddressType"
+          required
+        >
+          <mat-option value="home">Home</mat-option>
+          <mat-option value="company">Company</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!state">Address is required</mat-error>
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <div *ngIf="selectedAddressType === 'home'">
+        <input
+          type="text"
+          name="homeAddress1"
+          [(ngModel)]="add1"
+          placeholder="Home Address 1"
+          required
+        />
+        <input
+          type="text"
+          name="homeAddress2"
+          ngModel
+          placeholder="Home Address 2"
+        />
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <div *ngIf="selectedAddressType === 'company'">
+        <input
+          type="text"
+          name="companyAddress1"
+          [(ngModel)]="cadd1"
+          placeholder="Company Address 1"
+          required
+        />
+        <input
+          type="text"
+          name="companyAddress2"
+          ngModel
+          placeholder="Company Address 2"
+        />
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <mat-form-field appearance="fill">
+        <mat-label>Tags</mat-label>
+        <input
+          class="f3 mt-2"
+          matInput
+          [(ngModel)]="selectedTag"
+          name="tags"
+          placeholder="Select or type a tag"
+        />
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <mat-chip
+        class="mt-2 me-2"
+        *ngFor="let chip of chips"
+        [removable]="true"
+        (removed)="removeChip(chip)"
+        (click)="selectChip(chip)"
+      >
+        {{ chip }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <mat-checkbox class="example" [(ngModel)]="checked" name="checkbox"
+        >subscribe to newsletter</mat-checkbox
+      >
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <button
+        mat-button
+        class="cancel mt-2"
+        type="button"
+        (click)="cancelForm()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-button
+        class="submit ms-2 mt-2"
+        type="submit"
+        [disabled]="regForm.invalid"
+      >
+        Submit
+      </button>
+    </td>
+  </tr>
+</form>
