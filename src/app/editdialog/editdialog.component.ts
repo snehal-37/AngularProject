@@ -49,6 +49,13 @@ export class EditdialogComponent {
     const value = event.target.value;
     this.age = value;
   }
+
+  ngOnInit(id: any) {
+    this.ed.getUserByName(id).subscribe((data) => {
+      this.userDetails = data[0];
+    });
+  }
+
   submitForm(regForm: NgForm) {
     if (regForm.valid) {
       const userData = {

@@ -16,6 +16,10 @@ export class EdituserService {
     const timestamp = { ...data, timestamp: new Date().toISOString() };
     return this.http.post(`${this.url}`, timestamp);
   }
+
+  getUserByName(id: any): Observable<any> {
+    return this.http.get('http://localhost:3000/user?_sort=-timestamp', id);
+  }
   getUserDetails(): Observable<any> {
     return this.http.get('http://localhost:3000/user?_sort=-timestamp');
   }

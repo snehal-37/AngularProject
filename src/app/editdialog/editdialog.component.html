@@ -4,7 +4,7 @@
     <mat-icon>close</mat-icon>
   </button>
 </div>
-<form #regForm="ngForm" (ngSubmit)="submitForm(regForm)">
+<form #regForm="ngForm" (ngSubmit)="submitForm(regForm)" *ngIf="userDetails">
   <tr>
     <td>
       <div class="box"></div>
@@ -15,22 +15,24 @@
         type="text"
         [(ngModel)]="firstname"
         name="firstName"
-        placeholder="First name"
+        placeholder="Firstname"
         required
         maxlength="20"
         pattern="[a-zA-Z ]*"
         #firstnameInput="ngModel"
+        value="{{ userDetails.firstname }}"
       />
       <input
         class="f1"
         type="text"
         [(ngModel)]="lastname"
         name="lastName"
-        placeholder="Last name"
+        placeholder="Lastname"
         required
         maxlength="20"
         pattern="[a-zA-Z ]*"
         #lastnameInput="ngModel"
+        value="{{ userDetails.lastname }}"
       />
 
       <div>
@@ -73,6 +75,7 @@
           maxlength="50"
           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
           #emailInput="ngModel"
+          value="{{ userDetails.email }}"
         />
 
         <div
@@ -102,6 +105,7 @@
         maxlength="10"
         pattern="[0-9]{10,15}"
         #mobileNumberInput="ngModel"
+        value="{{ userDetails.mobileNumber }}"
       />
       <div
         *ngIf="
@@ -139,7 +143,12 @@
     <td>
       <mat-form-field>
         <mat-label>State</mat-label>
-        <mat-select [(ngModel)]="state" name="state" required>
+        <mat-select
+          [(ngModel)]="state"
+          name="state"
+          required
+          value="{{ userDetails.state }}"
+        >
           <mat-option value="andhrapradesh">Andhra Pradesh</mat-option>
           <mat-option value="gujarat">Gujarat</mat-option>
           <mat-option value="karnataka">Karnataka</mat-option>
@@ -160,7 +169,12 @@
     <td>
       <mat-form-field>
         <mat-label>Country</mat-label>
-        <mat-select [(ngModel)]="country" name="country" required>
+        <mat-select
+          [(ngModel)]="country"
+          name="country"
+          required
+          value="{{ userDetails.country }}"
+        >
           <mat-option value="india">India</mat-option>
         </mat-select>
         <mat-error *ngIf="!state">Country is required</mat-error>
@@ -176,6 +190,7 @@
           name="addressType"
           [(ngModel)]="selectedAddressType"
           required
+          value="{{ userDetails.selectedAddressType }}"
         >
           <mat-option value="home">Home</mat-option>
           <mat-option value="company">Company</mat-option>
@@ -235,6 +250,7 @@
           [(ngModel)]="selectedTag"
           name="tags"
           placeholder="Select or type a tag"
+          value="{{ userDetails.tag }}"
         />
       </mat-form-field>
     </td>

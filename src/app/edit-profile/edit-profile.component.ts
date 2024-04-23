@@ -3,6 +3,7 @@ import { EditdialogComponent } from '../editdialog/editdialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { EdituserService } from '../edituser.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-edit-profile',
